@@ -7,9 +7,11 @@ import { BarLoader } from "react-spinners"
 import { CREATE_ALBUM } from "../queries"
 
 const CreateAlbum = ({ userId }) => {
-  const [createAlbum, { loading }] = useMutation(CREATE_ALBUM, {
+  const [createAlbum, { data, loading }] = useMutation(CREATE_ALBUM, {
     variables: { userId },
   })
+
+  console.log(data)
 
   return (
     <>
