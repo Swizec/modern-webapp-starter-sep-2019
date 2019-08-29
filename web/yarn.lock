@@ -822,7 +822,7 @@
     "@emotion/utils" "0.11.2"
     "@emotion/weak-memoize" "0.2.3"
 
-"@emotion/core@^10.0.0":
+"@emotion/core@^10.0.0", "@emotion/core@^10.0.15":
   version "10.0.16"
   resolved "https://registry.yarnpkg.com/@emotion/core/-/core-10.0.16.tgz#e43630b65c84e31e81f34db3286eab584b08cfaa"
   integrity sha512-whbiiA7FfPreBY4BqWky2qRfAZvq+4dKQ1WNJuiYQwPCNmb0pEYDgNheSbZoNKtGTtfPaM28hBbZAKWD5EZXmQ==
@@ -9781,6 +9781,13 @@ react-side-effect@^1.1.0:
   dependencies:
     exenv "^1.2.1"
     shallowequal "^1.0.1"
+
+react-spinners@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/react-spinners/-/react-spinners-0.6.1.tgz#c4f31a1d0e4c85cdb1785a8bdbe17311cf269b0a"
+  integrity sha512-bMCOvwAlzuIDC6Zh69E1EbyKUbvWSl4sMzLXOgnsF4Q/kkAnCNaonWyskMFytbaJSYxBCCOiaeCH2moDJ5y5Pg==
+  dependencies:
+    "@emotion/core" "^10.0.15"
 
 react-use-auth@^0.4.1:
   version "0.4.1"
