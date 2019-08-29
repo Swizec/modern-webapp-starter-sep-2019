@@ -1,0 +1,22 @@
+{
+    "name": "shared-photo-album-server",
+    "version": "1.0.0",
+    "description": "Server side of the example shared photo album app",
+    "repository": "https://github.com/Swizec/shared-photo-album",
+    "author": "Swizec Teller",
+    "license": "MIT",
+    "scripts": {
+        "build": "tsc",
+        "deploy": "npm run build && sls deploy"
+    },
+    "dependencies": {
+        "@types/aws-lambda": "^8.10.31",
+        "@types/graphql": "^14.5.0",
+        "@types/uuid": "^3.4.5",
+        "apollo-server": "^2.9.1",
+        "apollo-server-lambda": "^2.9.1",
+        "aws-sdk": "^2.519.0",
+        "graphql": "^14.5.4",
+        "uuid": "^3.3.3"
+    }
+}
