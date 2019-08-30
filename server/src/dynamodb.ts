@@ -36,7 +36,7 @@ export const updateItem = async (
   params: UpdateItemParams
 ): Promise<AWS.DynamoDB.DocumentClient.UpdateItemOutput> => {
   const query = {
-    TableName: process.env.WIDGETS_TABLE!,
+    TableName: process.env.ALBUMS_TABLE!,
     ...params,
   }
 
@@ -56,7 +56,7 @@ export const getItem = async (
   params: GetItemParams
 ): Promise<AWS.DynamoDB.DocumentClient.GetItemOutput> => {
   const query = {
-    TableName: process.env.WIDGETS_TABLE!,
+    TableName: process.env.ALBUMS_TABLE!,
     ...params,
   }
 
@@ -76,7 +76,7 @@ export const scanItems = async (
   params: ScanItemsParams
 ): Promise<AWS.DynamoDB.DocumentClient.ScanOutput> => {
   const query = {
-    TableName: process.env.WIDGETS_TABLE!,
+    TableName: process.env.ALBUMS_TABLE!,
     ...params,
   }
 

@@ -7,10 +7,9 @@ export const createAlbum = async (_: any, { userId }: { userId: string }) => {
 
   const { Attributes } = await updateItem({
     Key: { userId, albumId },
-    UpdateExpression: "SET userId = :userId, albumId = :albumId",
+    UpdateExpression: "SET createdAt = :createdAt",
     ExpressionAttributeValues: {
-      ":userId": userId,
-      ":albumId": albumId,
+      ":createdAt": createdAt,
     },
     ReturnValues: "ALL_NEW",
   })
