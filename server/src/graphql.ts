@@ -7,6 +7,7 @@ const typeDefs = gql`
   type Album {
     userId: String!
     albumId: String!
+    createdAt: String
   }
 
   type Query {
