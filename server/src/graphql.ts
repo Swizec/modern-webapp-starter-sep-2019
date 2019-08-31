@@ -1,6 +1,6 @@
 import { ApolloServer, gql } from "apollo-server-lambda"
 
-import { album, allAlbum } from "./queries"
+import { album, allAlbum, presignedUploadUrl } from "./queries"
 import { createAlbum } from "./mutations"
 
 const typeDefs = gql`
@@ -10,9 +10,15 @@ const typeDefs = gql`
     createdAt: String
   }
 
+  type PresignedUrl {
+    url: String
+    expiresAt: String
+  }
+
   type Query {
     album(userId: String!, albumId: String!): Album
     allAlbum(userId: String): [Album]
+    presignedUploadUrl(albumId: String!): PresignedUrl
   }
 
   type Mutation {
@@ -24,6 +30,7 @@ const resolvers = {
   Query: {
     allAlbum,
     album,
+    presignedUploadUrl,
   },
   Mutation: {
     createAlbum,

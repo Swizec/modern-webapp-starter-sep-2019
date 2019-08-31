@@ -6,6 +6,9 @@ provider:
   stage: dev
   environment:
     ALBUMS_TABLE: ${self:service}-albums-${self:provider.stage}
+    S3_BUCKET:
+      Ref: SharedPhotosBucket
+
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -31,21 +34,5 @@ functions:
           cors: true
 
 resources:
-  Resources:
-    AlbumsTable:
-      Type: "AWS::DynamoDB::Table"
-      Properties:
-        AttributeDefinitions:
-          - AttributeName: userId
-            AttributeType: S
-          - AttributeName: albumId
-            AttributeType: S
-        KeySchema:
-          - AttributeName: userId
-            KeyType: HASH
-          - AttributeName: albumId
-            KeyType: RANGE
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
-        TableName: ${self:provider.environment.ALBUMS_TABLE}
+  - ${file(s3-bucket.yml)}
+  - ${file(dynamodb.yml)}

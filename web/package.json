@@ -7,6 +7,7 @@
     "dependencies": {
         "@rebass/preset": "^4.0.5",
         "apollo-boost": "^0.4.4",
+        "aws-sdk": "^2.520.0",
         "date-fns": "^2.0.1",
         "emotion-theming": "^10.0.14",
         "eslint-plugin-graphql": "^3.0.3",
@@ -26,6 +27,7 @@
         "react-apollo": "^3.0.1",
         "react-apollo-hooks": "^0.5.0",
         "react-dom": "^16.9.0",
+        "react-dropzone": "^10.1.8",
         "react-helmet": "^5.2.1",
         "react-spinners": "^0.6.1",
         "react-use-auth": "^0.4.1",

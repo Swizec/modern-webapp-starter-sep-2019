@@ -7,3 +7,12 @@ export const CREATE_ALBUM = gql`
     }
   }
 `
+
+export const GET_PRESIGNED_UPLOAD_URL = gql`
+  query presignedUploadUrl($albumId: String!) {
+    presignedUploadUrl(albumId: $albumId) {
+      url
+      expiresAt
+    }
+  }
+`
