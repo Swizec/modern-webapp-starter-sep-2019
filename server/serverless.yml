@@ -8,6 +8,7 @@ provider:
     ALBUMS_TABLE: ${self:service}-albums-${self:provider.stage}
     S3_BUCKET:
       Ref: SharedPhotosBucket
+    S3_REGION: ${self:provider.region}
 
   iamRoleStatements:
     - Effect: Allow

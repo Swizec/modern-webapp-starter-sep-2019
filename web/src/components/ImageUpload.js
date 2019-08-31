@@ -25,6 +25,9 @@ function useS3Upload({
       new Request(presignedUploadUrl, {
         method: "PUT",
         body: pendingImage,
+        headers: new Headers({
+          "Content-Type": "image/*",
+        }),
       })
     )
     console.log(response)

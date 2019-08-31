@@ -2,6 +2,7 @@ Resources:
   SharedPhotosBucket:
     Type: AWS::S3::Bucket
     Properties:
+      AccessControl: PublicReadWrite
       # Set the CORS policy
       CorsConfiguration:
         CorsRules:
