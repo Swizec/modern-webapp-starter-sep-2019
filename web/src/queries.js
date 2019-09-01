@@ -14,6 +14,16 @@ export const GET_PRESIGNED_UPLOAD_URL = gql`
       uploadUrl
       readUrl
       expiresAt
+      imageId
+    }
+  }
+`
+
+export const ADD_IMAGE = gql`
+  mutation addImage($albumId: String!, $imageId: String!, $imageUrl: String!) {
+    addImage(albumId: $albumId, imageId: $imageId, imageUrl: $imageUrl) {
+      imageUrl
+      createdAt
     }
   }
 `

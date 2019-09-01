@@ -16,3 +16,21 @@ Resources:
         ReadCapacityUnits: 1
         WriteCapacityUnits: 1
       TableName: ${self:provider.environment.ALBUMS_TABLE}
+
+  ImagesTable:
+    Type: "AWS::DynamoDB::Table"
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: albumId
+          AttributeType: S
+        - AttributeName: imageId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: albumId
+          KeyType: HASH
+        - AttributeName: imageId
+          KeyType: RANGE
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+      TableName: ${self:provider.environment.IMAGES_TABLE}

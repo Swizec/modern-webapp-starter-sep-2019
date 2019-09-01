@@ -1,10 +1,10 @@
 import React, { useState } from "react"
 import { useDropzone } from "react-dropzone"
 import { Box, Text } from "rebass"
-import { useQuery } from "react-apollo-hooks"
+import { useQuery, useMutation } from "react-apollo-hooks"
 import { BeatLoader } from "react-spinners"
 
-import { GET_PRESIGNED_UPLOAD_URL } from "../queries"
+import { GET_PRESIGNED_UPLOAD_URL, ADD_IMAGE } from "../queries"
 
 function useS3Upload({
   onUploadStart,
@@ -59,12 +59,26 @@ export default ({ albumId, addImageToAlbum }) => {
       albumId: albumId,
     },
   })
-  const { getRootProps, getInputProps, uploading } = useS3Upload({
-    presignedUploadUrl: data && data.presignedUploadUrl.uploadUrl,
-    onUploadReady: () => addImageToAlbum(data.presignedUploadUrl.readUrl),
+  const [saveImage, save] = useMutation(ADD_IMAGE, {
+    variables: {
+      imageUrl: data && data.presignedUploadUrl.readUrl,
+      imageId: data && data.presignedUploadUrl.imageId,
+      albumId,
+    },
   })
 
-  if (loading || uploading) {
+  const { getRootProps, getInputProps, uploading } = useS3Upload({
+    presignedUploadUrl: data && data.presignedUploadUrl.uploadUrl,
+    onUploadReady: () => {
+      saveImage()
+      addImageToAlbum({
+        imageUrl: data.presignedUploadUrl.readUrl,
+        imageId: data.presignedUploadUrl.imageId,
+      })
+    },
+  })
+
+  if (loading || uploading || save.loading) {
     return (
       <Box sx={{ textAlign: "center" }} p={[3, 4, 5]}>
         <BeatLoader size={15} />

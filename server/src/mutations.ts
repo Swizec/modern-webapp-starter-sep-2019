@@ -16,3 +16,27 @@ export const createAlbum = async (_: any, { userId }: { userId: string }) => {
 
   return Attributes
 }
+
+export const addImage = async (
+  _: any,
+  {
+    albumId,
+    imageId,
+    imageUrl,
+  }: { albumId: string; imageId: string; imageUrl: string }
+) => {
+  const createdAt = new Date().toISOString()
+
+  const { Attributes } = await updateItem({
+    TableName: process.env.IMAGES_TABLE,
+    Key: { albumId, imageId },
+    UpdateExpression: "SET createdAt = :createdAt, imageUrl = :imageUrl",
+    ExpressionAttributeValues: {
+      ":createdAt": createdAt,
+      ":imageUrl": imageUrl,
+    },
+    ReturnValues: "ALL_NEW",
+  })
+
+  return Attributes
+}
