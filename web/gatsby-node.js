@@ -17,27 +17,25 @@ exports.createPages = ({ graphql, actions }) => {
             userId
             albumId
             createdAt
+            images {
+              imageId
+              imageUrl
+            }
           }
         }
       }
     `)
 
     if (result) {
-      result.data.albumapi.allAlbum.forEach(
-        ({ userId, albumId, createdAt }) => {
-          const albumPath = path.resolve("./src/pages/album.js")
+      result.data.albumapi.allAlbum.forEach(album => {
+        const albumPath = path.resolve("./src/pages/album.js")
 
-          createPage({
-            path: `/${albumId}`,
-            component: albumPath,
-            context: {
-              userId,
-              albumId,
-              createdAt,
-            },
-          })
-        }
-      )
+        createPage({
+          path: `/${album.albumId}`,
+          component: albumPath,
+          context: album,
+        })
+      })
     } else {
       console.error("No result from albumapi")
     }

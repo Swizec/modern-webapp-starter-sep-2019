@@ -8,6 +8,7 @@ const typeDefs = gql`
     userId: String!
     albumId: String!
     createdAt: String
+    images: [Image]
   }
 
   type Image {

@@ -8,6 +8,18 @@ export const CREATE_ALBUM = gql`
   }
 `
 
+export const GET_ALBUM = gql`
+  query album($userId: String!, $albumId: String!) {
+    album(userId: $userId, albumId: $albumId) {
+      createdAt
+      images {
+        imageId
+        imageUrl
+      }
+    }
+  }
+`
+
 export const GET_PRESIGNED_UPLOAD_URL = gql`
   query presignedUploadUrl($albumId: String!) {
     presignedUploadUrl(albumId: $albumId) {

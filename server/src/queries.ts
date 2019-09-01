@@ -14,7 +14,17 @@ export const album = async (
     return {}
   }
 
-  return { ...result.Item }
+  const images = await scanItems({
+    TableName: process.env.IMAGES_TABLE,
+    FilterExpression: "#album = :albumId",
+    ExpressionAttributeNames: { "#album": "albumId" },
+    ExpressionAttributeValues: { ":albumId": albumId },
+  })
+
+  return {
+    ...result.Item,
+    images: images ? images.Items : [],
+  }
 }
 
 export const allAlbum = async (_: any, { userId }: { userId?: string }) => {
@@ -32,7 +42,19 @@ export const allAlbum = async (_: any, { userId }: { userId?: string }) => {
     return []
   }
 
-  return result.Items
+  return result.Items.map(async album => {
+    const images = await scanItems({
+      TableName: process.env.IMAGES_TABLE,
+      FilterExpression: "#album = :albumId",
+      ExpressionAttributeNames: { "#album": "albumId" },
+      ExpressionAttributeValues: { ":albumId": album.albumId },
+    })
+
+    return {
+      ...album,
+      images: images ? images.Items : [],
+    }
+  })
 }
 
 const S3 = new AWS.S3({
