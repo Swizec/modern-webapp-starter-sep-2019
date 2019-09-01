@@ -52,8 +52,9 @@ export const presignedUploadUrl = async (
 ) => {
   const filename = `${albumId}/${uuidv4()}`
   const expireSeconds = 60 * 5
+  const readUrl = `https://${process.env.S3_BUCKET}.s3.amazonaws.com/${filename}`
 
-  const url = S3.getSignedUrl("putObject", {
+  const uploadUrl = S3.getSignedUrl("putObject", {
     Bucket: process.env.S3_BUCKET,
     Key: filename,
     ContentType: "image/*",
@@ -61,7 +62,8 @@ export const presignedUploadUrl = async (
   })
 
   return {
-    url,
+    uploadUrl,
+    readUrl,
     expiresAt: addSeconds(new Date(), expireSeconds),
   }
 }

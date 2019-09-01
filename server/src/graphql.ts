@@ -11,7 +11,8 @@ const typeDefs = gql`
   }
 
   type PresignedUrl {
-    url: String
+    uploadUrl: String
+    readUrl: String
     expiresAt: String
   }
 

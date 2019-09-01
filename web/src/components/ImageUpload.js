@@ -16,7 +16,6 @@ function useS3Upload({
 
   async function onDrop([pendingImage]) {
     // Let the caller know that a file has been selected and a fetch is beginning.
-    console.log("start upload")
     onUploadStart && onUploadStart()
     setUploading(true)
 
@@ -30,10 +29,9 @@ function useS3Upload({
         }),
       })
     )
-    console.log(response)
+
     if (response.status !== 200) {
       // The upload failed, so let's notify the caller.
-      console.log("Upload failed")
       setUploading(false)
       onError && onError()
       return
@@ -41,7 +39,6 @@ function useS3Upload({
     // Let the caller know that the upload is done, so that it can send the URL
     // to the backend again, persisting it to the database.
 
-    console.log("upload done")
     setUploading(false)
     onUploadReady && onUploadReady()
   }
@@ -56,14 +53,15 @@ function useS3Upload({
   }
 }
 
-export default ({ albumId }) => {
+export default ({ albumId, addImageToAlbum }) => {
   const { data, error, loading } = useQuery(GET_PRESIGNED_UPLOAD_URL, {
     variables: {
       albumId: albumId,
     },
   })
   const { getRootProps, getInputProps, uploading } = useS3Upload({
-    presignedUploadUrl: data && data.presignedUploadUrl.url,
+    presignedUploadUrl: data && data.presignedUploadUrl.uploadUrl,
+    onUploadReady: () => addImageToAlbum(data.presignedUploadUrl.readUrl),
   })
 
   if (loading || uploading) {
