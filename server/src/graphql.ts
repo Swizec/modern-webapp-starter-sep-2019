@@ -1,7 +1,7 @@
 import { ApolloServer, gql } from "apollo-server-lambda"
 
 import { album, allAlbum, presignedUploadUrl } from "./queries"
-import { createAlbum, addImage } from "./mutations"
+import { createAlbum, addImage, likeImage } from "./mutations"
 
 const typeDefs = gql`
   type Album {
@@ -16,6 +16,8 @@ const typeDefs = gql`
     imageId: String!
     imageUrl: String
     createdAt: String
+    likes: Number
+    dislikes: Number
   }
 
   type PresignedUrl {
@@ -34,6 +36,12 @@ const typeDefs = gql`
   type Mutation {
     createAlbum(userId: String!): Album
     addImage(albumId: String!, imageId: String!, imageUrl: String!): Image
+    likeImage(
+      albumId: String!
+      imageId: String!
+      like: Boolean
+      dislike: Boolean
+    ): Image
   }
 `
 
@@ -46,6 +54,7 @@ const resolvers = {
   Mutation: {
     createAlbum,
     addImage,
+    likeImage,
   },
 }
 

@@ -38,7 +38,7 @@ const AlbumPage = ({ pageContext }) => {
       </Heading>
       <ImageUpload albumId={albumId} addImageToAlbum={addImageToAlbum} />
       {loading ? <BarLoader height={4} width={"100%"} /> : null}
-      <ImagesList images={images} />
+      <ImagesList images={images} albumId={albumId} />
     </Layout>
   )
 }

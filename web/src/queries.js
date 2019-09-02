@@ -39,3 +39,22 @@ export const ADD_IMAGE = gql`
     }
   }
 `
+
+export const LIKE_IMAGE = gql`
+  mutation likeImage(
+    $albumId: String!
+    $imageId: String!
+    $like: Boolean
+    $dislike: Boolean
+  ) {
+    likeImage(
+      albumId: $albumId
+      imageId: $imageId
+      like: $like
+      dislike: $dislike
+    ) {
+      likes
+      dislikes
+    }
+  }
+`
