@@ -15,6 +15,8 @@ export const GET_ALBUM = gql`
       images {
         imageId
         imageUrl
+        likes
+        dislikes
       }
     }
   }

@@ -22,7 +22,7 @@ const VoteButton = ({ like, dislike, imageId, albumId }) => {
       sx={{ textAlign: "center", cursor: "pointer" }}
       onClick={likeImage}
     >
-      {like ? "💔" : "💚"}
+      {dislike ? "💔" : "💚"}
       {loading ? <BarLoader height={4} width={"100%"} /> : null}
     </Text>
   )
@@ -38,8 +38,8 @@ const ImageCard = ({ albumId, imageId, imageUrl }) => {
     >
       <Image src={imageUrl} />
       <Flex>
-        <VoteButton like albumId={albumId} imageId={imageId} />
         <VoteButton dislike albumId={albumId} imageId={imageId} />
+        <VoteButton like albumId={albumId} imageId={imageId} />
       </Flex>
     </Card>
   )
@@ -47,8 +47,10 @@ const ImageCard = ({ albumId, imageId, imageUrl }) => {
 
 export default ({ images, albumId }) => (
   <Box mt={20} mb={40}>
-    {images.map(img => (
-      <ImageCard {...img} albumId={albumId} />
-    ))}
+    {images
+      .sort((a, b) => b.likes - b.dislikes - (a.likes - a.dislikes))
+      .map(img => (
+        <ImageCard {...img} albumId={albumId} key={img.imageId} />
+      ))}
   </Box>
 )
