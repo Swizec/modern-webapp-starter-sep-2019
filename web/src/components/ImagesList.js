@@ -20,6 +20,7 @@ const VoteButton = ({ like, dislike, imageId, albumId }) => {
       fontSize={[2, 3, 4]}
       width={1 / 2}
       sx={{ textAlign: "center", cursor: "pointer" }}
+      onClick={likeImage}
     >
       {like ? "💔" : "💚"}
       {loading ? <BarLoader height={4} width={"100%"} /> : null}
@@ -44,10 +45,10 @@ const ImageCard = ({ albumId, imageId, imageUrl }) => {
   )
 }
 
-export default ({ images }) => (
+export default ({ images, albumId }) => (
   <Box mt={20} mb={40}>
     {images.map(img => (
-      <ImageCard {...img} />
+      <ImageCard {...img} albumId={albumId} />
     ))}
   </Box>
 )

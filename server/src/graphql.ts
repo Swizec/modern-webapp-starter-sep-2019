@@ -16,8 +16,8 @@ const typeDefs = gql`
     imageId: String!
     imageUrl: String
     createdAt: String
-    likes: Number
-    dislikes: Number
+    likes: Int
+    dislikes: Int
   }
 
   type PresignedUrl {
