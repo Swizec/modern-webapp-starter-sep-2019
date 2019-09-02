@@ -16,14 +16,6 @@ import { client } from "./src/apollo"
 
 export const wrapRootElement = ({ element }) => (
   <ApolloProvider client={client}>
-    <ThemeProvider theme={theme}>
-      <AuthProvider
-        navigate={navigate}
-        auth0_domain="shared-photo-album.auth0.com"
-        auth0_client_id="45SgKWXNAGQAVuHLPs91IkaYSz1Pg5g7"
-      >
-        {element}
-      </AuthProvider>
-    </ThemeProvider>
+    <ThemeProvider theme={theme}>{element}</ThemeProvider>
   </ApolloProvider>
 )

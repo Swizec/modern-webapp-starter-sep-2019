@@ -4,7 +4,7 @@ import { Box, Text } from "rebass"
 import { useQuery, useMutation } from "react-apollo-hooks"
 import { BeatLoader } from "react-spinners"
 
-import { GET_PRESIGNED_UPLOAD_URL, ADD_IMAGE } from "../queries"
+// import { GET_PRESIGNED_UPLOAD_URL, ADD_IMAGE } from "../queries"
 
 function useS3Upload({
   onUploadStart,
@@ -53,43 +53,4 @@ function useS3Upload({
   }
 }
 
-export default ({ albumId, addImageToAlbum }) => {
-  const { data, error, loading } = useQuery(GET_PRESIGNED_UPLOAD_URL, {
-    variables: {
-      albumId: albumId,
-    },
-  })
-  const [saveImage, save] = useMutation(ADD_IMAGE, {
-    variables: {
-      imageUrl: data && data.presignedUploadUrl.readUrl,
-      imageId: data && data.presignedUploadUrl.imageId,
-      albumId,
-    },
-  })
-
-  const { getRootProps, getInputProps, uploading } = useS3Upload({
-    presignedUploadUrl: data && data.presignedUploadUrl.uploadUrl,
-    onUploadReady: () => {
-      saveImage()
-      addImageToAlbum({
-        imageUrl: data.presignedUploadUrl.readUrl,
-        imageId: data.presignedUploadUrl.imageId,
-      })
-    },
-  })
-
-  if (loading || uploading || save.loading) {
-    return (
-      <Box sx={{ textAlign: "center" }} p={[3, 4, 5]}>
-        <BeatLoader size={15} />
-      </Box>
-    )
-  }
-
-  return (
-    <Box sx={{ textAlign: "center" }} {...getRootProps()}>
-      <input {...getInputProps()} />
-      <Text p={[3, 4, 5]}>Drop an image or click to select</Text>
-    </Box>
-  )
-}
+export default ({ albumId, addImageToAlbum }) => {}

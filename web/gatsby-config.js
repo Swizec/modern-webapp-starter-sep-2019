@@ -27,18 +27,7 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-    {
-      resolve: "gatsby-source-graphql",
-      options: {
-        // This type will contain remote schema Query type
-        typeName: "ALBUMAPI",
-        // This is field under which it's accessible
-        fieldName: "albumapi",
-        // Url to query from
-        url:
-          "https://hkj1n72138.execute-api.us-east-1.amazonaws.com/dev/graphql",
-      },
-    },
+
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
