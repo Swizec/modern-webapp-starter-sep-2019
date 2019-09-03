@@ -1,20 +1,31 @@
 import { ApolloServer, gql } from "apollo-server-lambda"
 
-import {} from "./queries"
-import {} from "./mutations"
+import { album } from "./queries"
+import { createAlbum } from "./mutations"
 
 const typeDefs = gql`
+  type Album {
+    userId: String!
+    albumId: String!
+    createdAt: String
+  }
+
   type Query {
+    album(userId: String!, albumId: String!): Album
   }
 
   type Mutation {
-    
+    createAlbum(userId: String!): Album
   }
 `
 
 const resolvers = {
-  Query: {},
-  Mutation: {},
+  Query: {
+    album,
+  },
+  Mutation: {
+    createAlbum,
+  },
 }
 
 const server = new ApolloServer({ typeDefs, resolvers })
