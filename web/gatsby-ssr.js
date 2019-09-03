@@ -16,6 +16,14 @@ import { client } from "./src/apollo"
 
 export const wrapRootElement = ({ element }) => (
   <ApolloProvider client={client}>
-    <ThemeProvider theme={theme}>{element}</ThemeProvider>
+    <ThemeProvider theme={theme}>
+      <AuthProvider
+        navigate={navigate}
+        auth0_domain="jamstack-sep-2019.auth0.com"
+        auth0_client_id="YvrU5uJHFyEgfszJLjtfS4mLrOU9dZIF"
+      >
+        {element}
+      </AuthProvider>
+    </ThemeProvider>
   </ApolloProvider>
 )
