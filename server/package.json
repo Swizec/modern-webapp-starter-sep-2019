@@ -15,7 +15,7 @@
         "@types/graphql": "^14.5.0",
         "@types/uuid": "^3.4.5",
         "apollo-server": "^2.9.1",
-        "apollo-server-lambda": "^2.9.1",
+        "apollo-server-lambda": "^2.14.2",
         "aws-sdk": "^2.519.0",
         "date-fns": "^2.0.1",
         "graphql": "^14.5.4",
