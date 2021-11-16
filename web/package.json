@@ -7,7 +7,7 @@
     "dependencies": {
         "@rebass/preset": "^4.0.5",
         "apollo-boost": "^0.4.4",
-        "aws-sdk": "^2.520.0",
+        "aws-sdk": "^2.814.0",
         "date-fns": "^2.0.1",
         "emotion-theming": "^10.0.14",
         "eslint-plugin-graphql": "^3.0.3",
